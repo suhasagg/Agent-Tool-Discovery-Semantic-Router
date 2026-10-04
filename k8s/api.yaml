@@ -1,0 +1,14 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata: {name: semantic-router, namespace: semantic-router}
+spec:
+ replicas: 3
+ selector: {matchLabels: {app: semantic-router}}
+ template:
+  metadata: {labels: {app: semantic-router}}
+  spec:
+   containers:
+   - name: api
+     image: agent-tool-discovery-semantic-router:latest
+     ports: [{containerPort: 8000}]
+     resources: {requests: {cpu: "250m", memory: "256Mi"}, limits: {cpu: "2", memory: "2Gi"}}
